@@ -35,3 +35,6 @@ const seconds = document.querySelector('#seconds');
 //     document.getElementById("count-up").innerText = min+':'+zeroPlaceholder+second;
 // }
 
+// <script>
+
+// </script>
