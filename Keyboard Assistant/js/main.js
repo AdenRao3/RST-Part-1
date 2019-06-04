@@ -75,6 +75,54 @@ const square61 = document.querySelector('#square61');
 const square62 = document.querySelector('#square62');
 const square63 = document.querySelector('#square63');
 
+var arr = new Array();
+arr.push({ x : 250, y : 250 });
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 345678, y : 456});
+
+
+
 // function show_alert() 
 //  {     
 //    var name = document.getElementById('myname').value;
@@ -139,14 +187,15 @@ function startMatch() {
 
 function showSquare() {
 	// document.write('<img src="square.png">');
-	document.getElementById("message").innerHTML = '<img src="square.png">';
+	var x = document.getElementById("message").innerHTML = '<img src="square.png">';
 	keysCounter = 99
 	keysLeft.innerHTML = 99
+	acuracy.innerHTML = arr[43].x;
 }
 
-if (keysCounter === 99) {
-	myFunction(event)
-}
+// if (keysCounter === 99) {
+// 	myFunction(event)
+// }
 
 // function myFunction(event) {
 //   wordInput = event.keyCode;
