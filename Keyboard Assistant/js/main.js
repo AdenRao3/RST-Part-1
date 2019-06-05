@@ -2,6 +2,7 @@ window.addEventListener('load', init);
 
 let isPlaying;
 var keysCounter = 100
+var acurracy = 0 + "%"
 // var positions = [position(85, 70), position(500, 200), position(1000, 200), position(100, 500),]
 
 
@@ -13,6 +14,7 @@ const message = document.querySelector('#message');
 const actualSquare = document.querySelector('#actualSquare');
 const seconds = document.querySelector('#seconds');
 const square = document.querySelector('#square');
+
 // const square2 = document.querySelector('#square2');
 // const square3 = document.querySelector('#square3');
 // const square4 = document.querySelector('#square4');
@@ -77,8 +79,8 @@ const square = document.querySelector('#square');
 // const square63 = document.querySelector('#square63');
 
 var arr = new Array();
-arr.push({ x : 250, y : 0});
-arr.push({ x : 500, y : 567});
+arr.push({ x : 303, y : 135});
+arr.push({ x : 450, y : 135});
 arr.push({ x : 260, y : 456});
 arr.push({ x : 260, y : 456});
 arr.push({ x : 260, y : 456});
@@ -188,24 +190,16 @@ function showSquare() {
 	// document.write('<img src="square.png">');
 	// var square2678 = document.getElementById("actualSquare").innerHTML = '<img src="square.png">';
   document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[43].x + "px"
-  document.getElementById('square').style.top = arr[43].y + "px"
-
-  // var square2678.x = 250 + "px"
-  // var square2678.y = 122 + "px"
-	keysCounter = 99;
-	keysLeft.innerHTML = 99;
-	acuracy.innerHTML = arr[43].x;
+  document.getElementById('square').style.left = arr[0].x + "px"
+  document.getElementById('square').style.top = arr[0].y + "px"
+  keysCounter = keysCounter - 1;
+  keysLeft.innerHTML = keysCounter;
+  acurracy = 100 + "%"
+  acuracy.innerHTML = acurracy
 }
 
-// if (keysCounter === 99) {
-// 	myFunction(event)
-// }
-
-// function myFunction(event) {
-//   wordInput = event.keyCode;
-//   if (wordInput == 13) { 
-//     message.innerHTML = 'Good job';
-//     acuracy.innerHTML = '100%'
-//   }
-// }
+function showSquare2() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[1].x + "px"
+  document.getElementById('square').style.top = arr[1].y + "px"
+}
