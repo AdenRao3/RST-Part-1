@@ -58,8 +58,8 @@ loadImagesInSequence(['#square', '#square1', '#square2']);
 
 </script> -->
 
-<img id="square" src="square.png" class="square" />
-<img id="square2" src="square.png" class="square2"/>
+<img id="square" src="square.png" class="square" style="visibility:hidden; width: 500px; height: 260px"/>
+<!-- <img id="square2" src="square.png" class="square2"/>
 <img id="square3" src="square.png" class="square3"/>
 <img id="square4" src="square.png" class="square4"/>
 <img id="square5" src="square.png" class="square5"/>
@@ -120,7 +120,7 @@ loadImagesInSequence(['#square', '#square1', '#square2']);
 <img id="square60" src="square.png" class="square60"/>
 <img id="square61" src="square.png" class="square61"/>
 <img id="square62" src="square.png" class="square62"/>
-<img id="square62" src="square.png" class="square63"/>
+<img id="square62" src="square.png" class="square63"/> -->
 
 
 <!-- <img id="start" src="start.png" style="position:absolute; top:+200px; left:80px; width:100px; height:100px"/>
@@ -163,8 +163,8 @@ function init() {
           <img src="keyboard.png" alt="Keyboard" style="position:relative; top:-20px; left:-80px; width:700px; height:350px">
         <input type="text" class="form-control form-control-lg" placeholder="Type the keys that light up on the keyboard here" id="word-input" autofocus>
         <h4 class="mt-3" id="message"></h4>
+        <div id="actualSquare"></div>
 
-        
         <!-- How many more keys they have to type -->
         <div class="row mt-5">
           <div class="col-md-6">

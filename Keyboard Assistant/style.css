@@ -7,16 +7,17 @@ img {
 /*	border: 3px solid #00ff11;*/
 }
 
-img.square {
+/*img.square {
 	position: absolute;
 	max-width: auto;
 	max-height: auto;
 	width: 600px;
 	height: 296px;
-	left: 267px;
+	left: 100px;
 	top: 120px;
+	display: none;
 /*	border: 3px solid #00ff11;*/
-}
+
 
 img.square2 {
 	position: absolute;
