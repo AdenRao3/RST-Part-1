@@ -58,7 +58,8 @@ loadImagesInSequence(['#square', '#square1', '#square2']);
 
 </script> -->
 
-<img id="square" src="square.png" class="square" style="visibility:hidden; width: 500px; height: 260px"/>
+<img id="square" src="square.png" class="square" style="/*visibility:hidden;*/ width: 500px; height: 260px"/>
+<button type="button" onclick="startMatch()">Start</button>
 <!-- <img id="square2" src="square.png" class="square2"/>
 <img id="square3" src="square.png" class="square3"/>
 <img id="square4" src="square.png" class="square4"/>
@@ -161,7 +162,7 @@ function init() {
       <div class="col-md-6 mx-auto">
         <p class="lead"> Type the keys that light up
           <img src="keyboard.png" alt="Keyboard" style="position:relative; top:-20px; left:-80px; width:700px; height:350px">
-        <input type="text" class="form-control form-control-lg" placeholder="Type the keys that light up on the keyboard here" id="word-input" autofocus>
+        <input type="text" class="form-control form-control-lg" placeholder="Type the keys that light up on the keyboard here" id="word-input" autofocus onkeydown="keyCode(event)">
         <h4 class="mt-3" id="message"></h4>
         <div id="actualSquare"></div>
 

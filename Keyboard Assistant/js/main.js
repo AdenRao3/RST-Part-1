@@ -79,7 +79,7 @@ const square = document.querySelector('#square');
 // const square63 = document.querySelector('#square63');
 
 var arr = new Array();
-arr.push({ x : 303, y : 135});
+arr.push({ x : 275, y : 135});
 arr.push({ x : 450, y : 135});
 arr.push({ x : 260, y : 456});
 arr.push({ x : 260, y : 456});
@@ -189,13 +189,20 @@ function startMatch() {
 function showSquare() {
 	// document.write('<img src="square.png">');
 	// var square2678 = document.getElementById("actualSquare").innerHTML = '<img src="square.png">';
-  document.getElementById('square').style.visibility='visible';
+  // document.getElementById('square').style.visibility='visible';
   document.getElementById('square').style.left = arr[0].x + "px"
   document.getElementById('square').style.top = arr[0].y + "px"
+  keyCodes()
+}
+
+function keyCode(event) {
+  wordInput = event.keyCode;
+  if (wordInput == 49) {
   keysCounter = keysCounter - 1;
   keysLeft.innerHTML = keysCounter;
-  acurracy = 100 + "%"
-  acuracy.innerHTML = acurracy
+  acurracy = 100 + "%";
+  acuracy.innerHTML = acurracy;
+}
 }
 
 function showSquare2() {
