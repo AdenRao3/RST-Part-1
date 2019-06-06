@@ -14,6 +14,7 @@ const message = document.querySelector('#message');
 const actualSquare = document.querySelector('#actualSquare');
 const seconds = document.querySelector('#seconds');
 const square = document.querySelector('#square');
+const startButton = document.querySelector('#startButton')
 
 // const square2 = document.querySelector('#square2');
 // const square3 = document.querySelector('#square3');
@@ -161,13 +162,14 @@ arr.push({ x : 223, y : 135});
 //    ('#square').hide().delay(3000).fadeIn(2200);
 // });
 
+
 // Initialize Game
 function init() {
   // Sets the keys left to 100
   keysLeft.innerHTML = 100;
   // Set the keys left to 0%
-  acuracy.innerHTML = '0%';
-  wordInput.addEventListener('input', startMatch);
+  // acuracy.innerHTML = '0%';
+  document.getElementById("startButton").addEventListener("click", startMatch);
   // // Load word from array
   // showWord(words);
   // // Start matching on word input
@@ -182,27 +184,48 @@ function init() {
 
 // Start match
 function startMatch() {
+  var min = 0;
+  var second = 00;
+  var zeroPlaceholder = 0;
+  var counterId = setInterval(function(){
+    countUp();
+  }, 1000);
+  function countUp () {
+    second++;
+    if(second == 59){
+      second = 00;
+      min = min + 1;
+    }
+    if(second == 10){
+        zeroPlaceholder = '';
+    }else
+    if(second == 00){
+        zeroPlaceholder = 0;
+    }
+    document.getElementById("count-up").innerText = min+':'+zeroPlaceholder+second;
+  }
 	isPlaying = true;
-	showSquare()
+  keysLeft.innerHTML = 100;
+  showSquare();
 }
 
 function showSquare() {
 	// document.write('<img src="square.png">');
 	// var square2678 = document.getElementById("actualSquare").innerHTML = '<img src="square.png">';
   // document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[0].x + "px"
-  document.getElementById('square').style.top = arr[0].y + "px"
-  keyCodes()
+  document.getElementById('square').style.left = arr[0].x + "px";
+  document.getElementById('square').style.top = arr[0].y + "px";
+  keyCode1();
 }
 
-function keyCode(event) {
-  wordInput = event.keyCode;
-  if (wordInput == 49) {
-  keysCounter = keysCounter - 1;
-  keysLeft.innerHTML = keysCounter;
-  acurracy = 100 + "%";
-  acuracy.innerHTML = acurracy;
-}
+function keyCode1(event) {
+  var x = event.keyCode;
+  if (x == 49) {
+    keysCounter = keysCounter - 1;
+    keysLeft.innerHTML = 25;
+    acurracy = 100 + "%";
+    acuracy.innerHTML = acurracy;
+  }
 }
 
 function showSquare2() {
