@@ -1,8 +1,11 @@
 window.addEventListener('load', init);
 
 let isPlaying;
-var keysCounter = 100
-var acurracy = 0 + "%"
+var keysCounter = 100;
+var correctKeys = 0;
+var overallPresses = 0;
+var acurracy = (correctKeys/overallPresses)*100 + "%";
+var keyCounter = 0
 // var positions = [position(85, 70), position(500, 200), position(1000, 200), position(100, 500),]
 
 
@@ -14,6 +17,7 @@ const message = document.querySelector('#message');
 const actualSquare = document.querySelector('#actualSquare');
 const seconds = document.querySelector('#seconds');
 const square = document.querySelector('#square');
+const startButton = document.querySelector('#startButton');
 
 // const square2 = document.querySelector('#square2');
 // const square3 = document.querySelector('#square3');
@@ -79,30 +83,30 @@ const square = document.querySelector('#square');
 // const square63 = document.querySelector('#square63');
 
 var arr = new Array();
-arr.push({ x : 303, y : 135});
-arr.push({ x : 450, y : 135});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
+arr.push({ x : 275, y : 135});
+arr.push({ x : 457, y : 135});
+arr.push({ x : 503, y : 135});
+arr.push({ x : 593, y : 135});
+arr.push({ x : 548, y : 135});
+arr.push({ x : 765, y : 130});
+arr.push({ x : 223, y : 135});
+arr.push({ x : 320, y : 135});
+arr.push({ x : 410, y : 135});
+arr.push({ x : 683, y : 135});
+arr.push({ x : 728, y : 135});
+arr.push({ x : 774, y : 135});
+arr.push({ x : 365, y : 135});
+arr.push({ x : 637, y : 135});
+arr.push({ x : 235, y : 181});
+arr.push({ x : 297, y : 181});
+arr.push({ x : 434, y : 181});
+arr.push({ x : 570, y : 181});
+arr.push({ x : 797, y : 181});
+arr.push({ x : 808, y : 227});
+arr.push({ x : 240, y : 227});
+arr.push({ x : 399, y : 227});
+arr.push({ x : 536, y : 227});
+arr.push({ x : 558, y : 273});
 arr.push({ x : 260, y : 456});
 arr.push({ x : 260, y : 456});
 arr.push({ x : 260, y : 456});
@@ -123,6 +127,26 @@ arr.push({ x : 260, y : 456});
 arr.push({ x : 260, y : 456});
 arr.push({ x : 260, y : 456});
 arr.push({ x : 223, y : 135});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
+arr.push({ x : 260, y : 456});
 
 // function show_alert() 
 //  {     
@@ -161,13 +185,14 @@ arr.push({ x : 223, y : 135});
 //    ('#square').hide().delay(3000).fadeIn(2200);
 // });
 
+
 // Initialize Game
 function init() {
   // Sets the keys left to 100
   keysLeft.innerHTML = 100;
   // Set the keys left to 0%
-  acuracy.innerHTML = '0%';
-  wordInput.addEventListener('input', startMatch);
+  // acuracy.innerHTML = '0%';
+  document.getElementById("startButton").addEventListener("click", startMatch);
   // // Load word from array
   // showWord(words);
   // // Start matching on word input
@@ -182,24 +207,1824 @@ function init() {
 
 // Start match
 function startMatch() {
+  var min = 0;
+  var second = 00;
+  var zeroPlaceholder = 0;
+  var counterId = setInterval(function(){
+    countUp();
+  }, 1000);
+  function countUp () {
+    second++;
+    if(second == 59){
+      second = 00;
+      min = min + 1;
+    }
+    if(second == 10){
+        zeroPlaceholder = '';
+    }else
+    if(second == 00){
+        zeroPlaceholder = 0;
+    }
+    document.getElementById("count-up").innerText = min+':'+zeroPlaceholder+second;
+  }
 	isPlaying = true;
-	showSquare()
+  keysLeft.innerHTML = 100;
+  showSquare();
+}
+
+function keyCode1(event) {
+  var x = event.keyCode;
+  if (keyCounter == 1) {
+    if (x == 49) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare2()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare2()
+    }
+  }
+  else if (keyCounter == 2) {
+    if (x == 53) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare3()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare3()
+    }
+  }
+  else if (keyCounter == 3) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare4()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare4()
+    }
+  }
+  else if (keyCounter == 4) {
+    if (x == 56) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare5()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare5()
+    }
+  }
+  else if (keyCounter == 5) {
+    if (x == 55) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare6()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare6()
+    }
+  }
+  else if (keyCounter == 6) {
+    if (x == 8) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare7()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare7()
+    }
+  }
+  else if (keyCounter == 7) {
+    if (x == 222) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare8()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare8()
+    }
+  }
+  else if (keyCounter == 8) {
+    if (x == 50) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare9()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare9()
+    }
+  }
+  else if (keyCounter == 9) {
+    if (x == 52) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare10()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare10()
+    }
+  }
+  else if (keyCounter == 10) {
+    if (x == 48) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare11()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare11()
+    }
+  }
+  else if (keyCounter == 11) {
+    if (x == 189) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare12()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare12()
+    }
+  }
+  else if (keyCounter == 12) {
+    if (x == 187) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare13()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare13()
+    }
+  }
+  else if (keyCounter == 13) {
+    if (x == 51) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare14()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare14()
+    }
+  }
+  else if (keyCounter == 14) {
+    if (x == 57) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare15()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare15()
+    }
+  }
+  else if (keyCounter == 15) {
+    if (x == 57) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare16()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare16()
+    }
+  }
+  else if (keyCounter == 16) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare17()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare17()
+    }
+  }
+  else if (keyCounter == 17) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare18()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare18()
+    }
+  }
+  else if (keyCounter == 18) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare19()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare19()
+    }
+  }
+  else if (keyCounter == 19) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare20()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare20()
+    }
+  }
+  else if (keyCounter == 20) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare21()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare21()
+    }
+  }
+  else if (keyCounter == 21) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare22()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare22()
+    }
+  }
+  else if (keyCounter == 22) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare23()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare23()
+    }
+  }
+  else if (keyCounter == 23) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare24()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare24()
+    }
+  }
+  else if (keyCounter == 24) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare25()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare25()
+    }
+  }
+  else if (keyCounter == 25) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare26()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare26()
+    }
+  }
+  else if (keyCounter == 26) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare27()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare27()
+    }
+  }
+  else if (keyCounter == 27) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare28()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare28()
+    }
+  }
+  else if (keyCounter == 28) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare29()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare29()
+    }
+  }
+  else if (keyCounter == 29) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare30()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare30()
+    }
+  }
+  else if (keyCounter == 30) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare31()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare31()
+    }
+  }
+  else if (keyCounter == 31) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare32()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare32()
+    }
+  }
+  else if (keyCounter == 32) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare33()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare33()
+    }
+  }
+  else if (keyCounter == 33) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare34()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare34()
+    }
+  }
+  else if (keyCounter == 34) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare35()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare35()
+    }
+  }
+  else if (keyCounter == 35) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare36()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare36()
+    }
+  }
+  else if (keyCounter == 36) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare37()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare37()
+    }
+  }
+  else if (keyCounter == 37) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare38()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare38()
+    }
+  }
+  else if (keyCounter == 38) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare39()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare39()
+    }
+  }
+  else if (keyCounter == 39) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare40()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare40()
+    }
+  }
+  else if (keyCounter == 40) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare41()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare41()
+    }
+  }
+  else if (keyCounter == 41) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare42()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare42()
+    }
+  }
+  else if (keyCounter == 42) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare43()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare43()
+    }
+  }
+  else if (keyCounter == 43) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare44()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare44()
+    }
+  }
+  else if (keyCounter == 44) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare45()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare45()
+    }
+  }
+  else if (keyCounter == 45) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare46()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare46()
+    }
+  }
+  else if (keyCounter == 46) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare47()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare47()
+    }
+  }
+  else if (keyCounter == 47) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare48()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare48()
+    }
+  }
+  else if (keyCounter == 48) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare49()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare49()
+    }
+  }
+  else if (keyCounter == 49) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare50()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare50()
+    }
+  }
+  else if (keyCounter == 50) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare51()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare51()
+    }
+  }
+  else if (keyCounter == 51) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare52()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare52()
+    }
+  }
+  else if (keyCounter == 52) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare53()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare53()
+    }
+  }
+  else if (keyCounter == 53) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare54()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare54()
+    }
+  }
+  else if (keyCounter == 54) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare55()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare55()
+    }
+  }
+  else if (keyCounter == 55) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare56()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare56()
+    }
+  }
+  else if (keyCounter == 56) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare57()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare57()
+    }
+  }
+  else if (keyCounter == 57) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare58()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare58()
+    }
+  }
+  else if (keyCounter == 58) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare59()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare59()
+    }
+  }
+  else if (keyCounter == 59) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare60()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare60()
+    }
+  }
+  else if (keyCounter == 60) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare61()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare61()
+    }
+  }
+  else if (keyCounter == 61) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare62()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare62()
+    }
+  }
+  else if (keyCounter == 62) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare63()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare63()
+    }
+  }
+    else if (keyCounter == 63) {
+    if (x == 54) {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys + 1;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare2()
+    }
+    else {
+      keysCounter = keysCounter - 1;
+      keysLeft.innerHTML = keysCounter;
+      correctKeys = correctKeys;
+      overallPresses = overallPresses + 1;
+      acurracy = (correctKeys/overallPresses)*100 + "%";
+      acuracy.innerHTML = acurracy;
+      showSquare2()
+    }
+  }
+  
 }
 
 function showSquare() {
-	// document.write('<img src="square.png">');
-	// var square2678 = document.getElementById("actualSquare").innerHTML = '<img src="square.png">';
-  document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[0].x + "px"
-  document.getElementById('square').style.top = arr[0].y + "px"
-  keysCounter = keysCounter - 1;
-  keysLeft.innerHTML = keysCounter;
-  acurracy = 100 + "%"
-  acuracy.innerHTML = acurracy
+  document.getElementById('square').style.left = arr[0].x + "px";
+  document.getElementById('square').style.top = arr[0].y + "px";
+  keyCounter = 0 + 1
+  keyCode1();
 }
 
 function showSquare2() {
   document.getElementById('square').style.visibility='visible';
   document.getElementById('square').style.left = arr[1].x + "px"
   document.getElementById('square').style.top = arr[1].y + "px"
+  keyCounter = 2
+  keyCode1()
 }
+
+function showSquare3() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[2].x + "px"
+  document.getElementById('square').style.top = arr[2].y + "px"
+  keyCounter = 3
+  keyCode1()
+}
+
+function showSquare4() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[3].x + "px"
+  document.getElementById('square').style.top = arr[3].y + "px"
+  keyCounter = 4
+  keyCode1()
+}
+
+function showSquare5() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[4].x + "px"
+  document.getElementById('square').style.top = arr[4].y + "px"
+  keyCounter = 5
+  keyCode1()
+}
+
+function showSquare6() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[5].x + "px"
+  document.getElementById('square').style.top = arr[5].y + "px"
+  document.getElementById('square').style.width = 700 + "px"
+  document.getElementById('square').style.height = 270 + "px"
+  keyCounter = 6
+  keyCode1()
+}
+
+function showSquare7() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[6].x + "px"
+  document.getElementById('square').style.top = arr[6].y + "px"
+  document.getElementById('square').style.width = 500 + "px"
+  document.getElementById('square').style.height = 260 + "px"
+  keyCounter = 7
+  keyCode1()
+}
+
+function showSquare8() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[7].x + "px"
+  document.getElementById('square').style.top = arr[7].y + "px"
+  keyCounter = 8
+  keyCode1()
+}
+
+function showSquare9() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[8].x + "px"
+  document.getElementById('square').style.top = arr[8].y + "px"
+  keyCounter = 9
+  keyCode1()
+}
+
+function showSquare10() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[9].x + "px"
+  document.getElementById('square').style.top = arr[9].y + "px"
+  keyCounter = 10
+  keyCode1()
+}
+
+function showSquare11() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[10].x + "px"
+  document.getElementById('square').style.top = arr[10].y + "px"
+  keyCounter = 11
+  keyCode1()
+}
+
+function showSquare12() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[11].x + "px"
+  document.getElementById('square').style.top = arr[11].y + "px"
+  keyCounter = 12
+  keyCode1()
+}
+
+function showSquare13() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[12].x + "px"
+  document.getElementById('square').style.top = arr[12].y + "px"
+  keyCounter = 13
+  keyCode1()
+}
+
+function showSquare14() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[13].x + "px"
+  document.getElementById('square').style.top = arr[13].y + "px"
+  keyCounter = 14
+  keyCode1()
+}
+
+function showSquare15() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[14].x + "px"
+  document.getElementById('square').style.top = arr[14].y + "px"
+  keyCounter = 15
+  keyCode1()
+}
+
+function showSquare16() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[15].x + "px"
+  document.getElementById('square').style.top = arr[15].y + "px"
+  keyCounter = 16
+  keyCode1()
+}
+
+function showSquare17() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[16].x + "px"
+  document.getElementById('square').style.top = arr[16].y + "px"
+  keyCounter = 17
+  keyCode1()
+}
+
+function showSquare18() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[17].x + "px"
+  document.getElementById('square').style.top = arr[17].y + "px"
+  keyCounter = 18
+  keyCode1()
+}
+
+function showSquare19() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[18].x + "px"
+  document.getElementById('square').style.top = arr[18].y + "px"
+  keyCounter = 19
+  keyCode1()
+}
+
+function showSquare20() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[19].x + "px"
+  document.getElementById('square').style.top = arr[19].y + "px"
+  keyCounter = 20
+  keyCode1()
+}
+
+function showSquare21() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[20].x + "px"
+  document.getElementById('square').style.top = arr[20].y + "px"
+  keyCounter = 21
+  keyCode1()
+}
+
+function showSquare22() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[21].x + "px"
+  document.getElementById('square').style.top = arr[21].y + "px"
+  keyCounter = 22
+  keyCode1()
+}
+
+function showSquare23() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[22].x + "px"
+  document.getElementById('square').style.top = arr[22].y + "px"
+  keyCounter = 23
+  keyCode1()
+}
+
+function showSquare24() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[23].x + "px"
+  document.getElementById('square').style.top = arr[23].y + "px"
+  keyCounter = 24
+  keyCode1()
+}
+
+function showSquare25() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[24].x + "px"
+  document.getElementById('square').style.top = arr[24].y + "px"
+  keyCounter = 25
+  keyCode1()
+}
+
+function showSquare26() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[25].x + "px"
+  document.getElementById('square').style.top = arr[25].y + "px"
+  keyCounter = 26
+  keyCode1()
+}
+
+function showSquare27() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[26].x + "px"
+  document.getElementById('square').style.top = arr[26].y + "px"
+  keyCounter = 27
+  keyCode1()
+}
+
+function showSquare28() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[27].x + "px"
+  document.getElementById('square').style.top = arr[27].y + "px"
+  keyCounter = 28
+  keyCode1()
+}
+
+function showSquare29() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[28].x + "px"
+  document.getElementById('square').style.top = arr[28].y + "px"
+  keyCounter = 29
+  keyCode1()
+}
+
+function showSquare30() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[29].x + "px"
+  document.getElementById('square').style.top = arr[29].y + "px"
+  keyCounter = 30
+  keyCode1()
+}
+
+function showSquare31() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[30].x + "px"
+  document.getElementById('square').style.top = arr[30].y + "px"
+  keyCounter = 31
+  keyCode1()
+}
+
+function showSquare32() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[31].x + "px"
+  document.getElementById('square').style.top = arr[31].y + "px"
+  keyCounter = 32
+  keyCode1()
+}
+
+function showSquare33() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[32].x + "px"
+  document.getElementById('square').style.top = arr[32].y + "px"
+  keyCounter = 33
+  keyCode1()
+}
+
+function showSquare34() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[33].x + "px"
+  document.getElementById('square').style.top = arr[33].y + "px"
+  keyCounter = 34
+  keyCode1()
+}
+
+function showSquare35() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[34].x + "px"
+  document.getElementById('square').style.top = arr[34].y + "px"
+  keyCounter = 35
+  keyCode1()
+}
+
+function showSquare36() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[35].x + "px"
+  document.getElementById('square').style.top = arr[35].y + "px"
+  keyCounter = 36
+  keyCode1()
+}
+
+function showSquare37() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[36].x + "px"
+  document.getElementById('square').style.top = arr[36].y + "px"
+  keyCounter = 37
+  keyCode1()
+}
+
+function showSquare38() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[37].x + "px"
+  document.getElementById('square').style.top = arr[37].y + "px"
+  keyCounter = 38
+  keyCode1()
+}
+
+function showSquare39() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[38].x + "px"
+  document.getElementById('square').style.top = arr[38].y + "px"
+  keyCounter = 39
+  keyCode1()
+}
+
+function showSquare40() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[39].x + "px"
+  document.getElementById('square').style.top = arr[39].y + "px"
+  keyCounter = 40
+  keyCode1()
+}
+
+function showSquare41() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[40].x + "px"
+  document.getElementById('square').style.top = arr[40].y + "px"
+  keyCounter = 41
+  keyCode1()
+}
+
+function showSquare42() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[41].x + "px"
+  document.getElementById('square').style.top = arr[41].y + "px"
+  keyCounter = 42
+  keyCode1()
+}
+
+function showSquare43() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[42].x + "px"
+  document.getElementById('square').style.top = arr[42].y + "px"
+  keyCounter = 43
+  keyCode1()
+}
+
+function showSquare44() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[43].x + "px"
+  document.getElementById('square').style.top = arr[43].y + "px"
+  keyCounter = 44
+  keyCode1()
+}
+
+function showSquare45() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[44].x + "px"
+  document.getElementById('square').style.top = arr[44].y + "px"
+  keyCounter = 45
+  keyCode1()
+}
+
+function showSquare46() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[45].x + "px"
+  document.getElementById('square').style.top = arr[45].y + "px"
+  keyCounter = 46
+  keyCode1()
+}
+
+function showSquare47() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[46].x + "px"
+  document.getElementById('square').style.top = arr[46].y + "px"
+  keyCounter = 47
+  keyCode1()
+}
+
+function showSquare48() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[47].x + "px"
+  document.getElementById('square').style.top = arr[47].y + "px"
+  keyCounter = 48
+  keyCode1()
+}
+
+function showSquare49() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[48].x + "px"
+  document.getElementById('square').style.top = arr[48].y + "px"
+  keyCounter = 49
+  keyCode1()
+}
+
+function showSquare50() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[49].x + "px"
+  document.getElementById('square').style.top = arr[49].y + "px"
+  keyCounter = 50
+  keyCode1()
+}
+
+function showSquare51() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[50].x + "px"
+  document.getElementById('square').style.top = arr[50].y + "px"
+  keyCounter = 51
+  keyCode1()
+}
+
+function showSquare52() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[51].x + "px"
+  document.getElementById('square').style.top = arr[51].y + "px"
+  keyCounter = 52
+  keyCode1()
+}
+
+function showSquare53() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[52].x + "px"
+  document.getElementById('square').style.top = arr[52].y + "px"
+  keyCounter = 53
+  keyCode1()
+}
+
+function showSquare54() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[53].x + "px"
+  document.getElementById('square').style.top = arr[53].y + "px"
+  keyCounter = 54
+  keyCode1()
+}
+
+function showSquare55() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[54].x + "px"
+  document.getElementById('square').style.top = arr[54].y + "px"
+  keyCounter = 55
+  keyCode1()
+}
+
+function showSquare56() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[55].x + "px"
+  document.getElementById('square').style.top = arr[55].y + "px"
+  keyCounter = 56
+  keyCode1()
+}
+
+function showSquare57() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[56].x + "px"
+  document.getElementById('square').style.top = arr[56].y + "px"
+  keyCounter = 57
+  keyCode1()
+}
+
+function showSquare58() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[57].x + "px"
+  document.getElementById('square').style.top = arr[57].y + "px"
+  keyCounter = 58
+  keyCode1()
+}
+
+function showSquare59() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[58].x + "px"
+  document.getElementById('square').style.top = arr[58].y + "px"
+  keyCounter = 59
+  keyCode1()
+}
+
+function showSquare60() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[59].x + "px"
+  document.getElementById('square').style.top = arr[59].y + "px"
+  keyCounter = 60
+  keyCode1()
+}
+
+function showSquare61() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[60].x + "px"
+  document.getElementById('square').style.top = arr[60].y + "px"
+  keyCounter = 61
+  keyCode1()
+}
+
+function showSquare62() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[61].x + "px"
+  document.getElementById('square').style.top = arr[61].y + "px"
+  keyCounter = 62
+  keyCode1()
+}
+
+function showSquare63() {
+  document.getElementById('square').style.visibility='visible';
+  document.getElementById('square').style.left = arr[62].x + "px"
+  document.getElementById('square').style.top = arr[62].y + "px"
+  keyCounter = 63
+  keyCode1()
+}
+
+// function showSquare19() {
+//   document.getElementById('square').style.visibility='visible';
+//   document.getElementById('square').style.left = arr[18].x + "px"
+//   document.getElementById('square').style.top = arr[18].y + "px"
+//   keyCounter = 19
+//   keyCode1()
+// }
+
+// function showSquare19() {
+//   document.getElementById('square').style.visibility='visible';
+//   document.getElementById('square').style.left = arr[18].x + "px"
+//   document.getElementById('square').style.top = arr[18].y + "px"
+//   keyCounter = 19
+//   keyCode1()
+// }
+
+// function showSquare19() {
+//   document.getElementById('square').style.visibility='visible';
+//   document.getElementById('square').style.left = arr[18].x + "px"
+//   document.getElementById('square').style.top = arr[18].y + "px"
+//   keyCounter = 19
+//   keyCode1()
+// }
+
