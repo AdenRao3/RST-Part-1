@@ -1,8 +1,13 @@
+// Goes to intialize game function when the window loads
 window.addEventListener('load', init);
 
+// The variables for the js file
 let isPlaying;
+// Sets the correct keys to 0
 var correctKeys = 0;
+// Sets the overall presses to 0
 var overallPresses = 0;
+// Makes the acurracy set to the correct keys divided by the overall presses times 100 + the a percent symbol
 var acurracy = (correctKeys/overallPresses)*100 + "%";
 var keyCounter = 0
 
@@ -17,9 +22,10 @@ const square = document.querySelector('#square');
 const startButton = document.querySelector('#startButton');
 const numberOfKeys = document.querySelector('#numberOfKeys');
 
+// Sets the keys counter to what the user entered in the text field
 var keysCounter = numberOfKeys.value;
-// document.getElementById('count-up').innerText = 'Hi'
 
+// Array for everysingle position of the squares 
 var arr = new Array();
 arr.push({ x : 275, y : 135});
 arr.push({ x : 457, y : 135});
@@ -78,67 +84,13 @@ arr.push({ x : 445, y : 227});
 arr.push({ x : 422, y : 273});
 arr.push({ x : 673, y : 227});
 arr.push({ x : 660, y : 181});
-// arr.push({ x : 700, y : 181});
-// arr.push({ x : 260, y : 456});
-// arr.push({ x : 260, y : 456});
-// arr.push({ x : 260, y : 456});
-// arr.push({ x : 260, y : 456});
-// arr.push({ x : 260, y : 456});
-// arr.push({ x : 260, y : 456});
-
-// function show_alert() 
-//  {     
-//    var name = document.getElementById('myname').value;
-//    alert("Hello,\xa0"+ name);
-//  } 
-
-// var min = 0;
-// var second = 00;
-// var zeroPlaceholder = 0;
-// var counterId = setInterval(function(){
-//   countUp();
-// }, 1000);
-
-// function countUp () {
-//     second++;
-//     if(second == 59){
-//       second = 00;
-//       min = min + 1;
-//     }
-//     if(second == 10){
-//         zeroPlaceholder = '';
-//     }else
-//     if(second == 00){
-//         zeroPlaceholder = 0;
-//     }
-
-//     document.getElementById("count-up").innerText = min+':'+zeroPlaceholder+second;
-// }
-
-// <script>
-
-// </script>
-
-// (document).ready(function() {
-//    ('#square').hide().delay(3000).fadeIn(2200);
-// });
-
 
 // Initialize Game
 function init() {
-  // Sets the keys left to 100
+  // Sets the keys left to what the user entered in the text field
   keysLeft.innerHTML = numberOfKeys.value;
-  // Set the keys left to 0%
-  // acuracy.innerHTML = '0%';
+  // Go to start match function when the user hits the start button
   document.getElementById("startButton").addEventListener("click", startMatch);
-  // // Load word from array
-  // showWord(words);
-  // // Start matching on word input
-  // wordInput.addEventListener('input', startMatch);
-  // // Call countdown every second
-  // setInterval(countdown, 1000);
-  // // Check game status
-  // setInterval(checkStatus, 50);
 }
 
 
