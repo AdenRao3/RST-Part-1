@@ -6,8 +6,6 @@ var correctKeys = 0;
 var overallPresses = 0;
 var acurracy = (correctKeys/overallPresses)*100 + "%";
 var keyCounter = 0
-// var positions = [position(85, 70), position(500, 200), position(1000, 200), position(100, 500),]
-
 
 // Variables set to what the id is in the HTML document/DOM elements
 const wordInput = document.querySelector('#word-input');
@@ -18,69 +16,9 @@ const actualSquare = document.querySelector('#actualSquare');
 const seconds = document.querySelector('#seconds');
 const square = document.querySelector('#square');
 const startButton = document.querySelector('#startButton');
+const numberOfKeys = document.querySelector('#numberOfKeys');
 
-// const square2 = document.querySelector('#square2');
-// const square3 = document.querySelector('#square3');
-// const square4 = document.querySelector('#square4');
-// const square5 = document.querySelector('#square5');
-// const square6 = document.querySelector('#square6');
-// const square7 = document.querySelector('#square7');
-// const square8 = document.querySelector('#square8');
-// const square9 = document.querySelector('#square9');
-// const square10 = document.querySelector('#square10');
-// const square11 = document.querySelector('#square11');
-// const square12 = document.querySelector('#square12');
-// const square13 = document.querySelector('#square13');
-// const square14 = document.querySelector('#square14');
-// const square15 = document.querySelector('#square15');
-// const square16 = document.querySelector('#square16');
-// const square17 = document.querySelector('#square17');
-// const square18 = document.querySelector('#square18');
-// const square19 = document.querySelector('#square19');
-// const square20 = document.querySelector('#square20');
-// const square21 = document.querySelector('#square21');
-// const square22 = document.querySelector('#square22');
-// const square23 = document.querySelector('#square23');
-// const square24 = document.querySelector('#square24');
-// const square25 = document.querySelector('#square25');
-// const square26 = document.querySelector('#square26');
-// const square27 = document.querySelector('#square27');
-// const square28 = document.querySelector('#square28');
-// const square29 = document.querySelector('#square29');
-// const square30 = document.querySelector('#square30');
-// const square31 = document.querySelector('#square31');
-// const square32 = document.querySelector('#square32');
-// const square33 = document.querySelector('#square33');
-// const square34 = document.querySelector('#square34');
-// const square35 = document.querySelector('#square35');
-// const square36 = document.querySelector('#square36');
-// const square37 = document.querySelector('#square37');
-// const square38 = document.querySelector('#square38');
-// const square39 = document.querySelector('#square39');
-// const square40 = document.querySelector('#square40');
-// const square41 = document.querySelector('#square41');
-// const square42 = document.querySelector('#square42');
-// const square43 = document.querySelector('#square43');
-// const square44 = document.querySelector('#square44');
-// const square45 = document.querySelector('#square45');
-// const square46 = document.querySelector('#square46');
-// const square47 = document.querySelector('#square47');
-// const square48 = document.querySelector('#square48');
-// const square49 = document.querySelector('#square49');
-// const square50 = document.querySelector('#square50');
-// const square51 = document.querySelector('#square51');
-// const square52 = document.querySelector('#square52');
-// const square53 = document.querySelector('#square53');
-// const square54 = document.querySelector('#square54');
-// const square55 = document.querySelector('#square55');
-// const square56 = document.querySelector('#square56');
-// const square57 = document.querySelector('#square57');
-// const square58 = document.querySelector('#square58');
-// const square59 = document.querySelector('#square59');
-// const square60 = document.querySelector('#square60');
-// const square61 = document.querySelector('#square61');
-// const square62 = document.querySelector('#square62');
-// const square63 = document.querySelector('#square63');
+// document.getElementById('count-up').innerText = 'Hi'
 
 var arr = new Array();
 arr.push({ x : 275, y : 135});
@@ -107,46 +45,46 @@ arr.push({ x : 240, y : 227});
 arr.push({ x : 399, y : 227});
 arr.push({ x : 536, y : 227});
 arr.push({ x : 558, y : 273});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 223, y : 135});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
-arr.push({ x : 260, y : 456});
+arr.push({ x : 581, y : 227});
+arr.push({ x : 292, y : 320});
+arr.push({ x : 343, y : 181});
+arr.push({ x : 388, y : 181});
+arr.push({ x : 308, y : 227});
+arr.push({ x : 354, y : 227});
+arr.push({ x : 377, y : 273});
+arr.push({ x : 348, y : 320});
+arr.push({ x : 724, y : 320});
+arr.push({ x : 820, y : 273});
+arr.push({ x : 842, y : 320});
+arr.push({ x : 780, y : 320});
+arr.push({ x : 627, y : 227});
+arr.push({ x : 570, y : 181});
+arr.push({ x : 525, y : 181});
+arr.push({ x : 510, y : 325});
+arr.push({ x : 667, y : 325});
+arr.push({ x : 230, y : 320});
+arr.push({ x : 331, y : 273});
+arr.push({ x : 230, y : 273});
+arr.push({ x : 513, y : 273});
+arr.push({ x : 604, y : 273});
+arr.push({ x : 649, y : 273});
+arr.push({ x : 695, y : 273});
+arr.push({ x : 718, y : 227});
+arr.push({ x : 763, y : 227});
+arr.push({ x : 752, y : 181});
+arr.push({ x : 707, y : 181});
+arr.push({ x : 490, y : 227});
+arr.push({ x : 445, y : 227});
+arr.push({ x : 422, y : 273});
+arr.push({ x : 673, y : 227});
+arr.push({ x : 660, y : 181});
+// arr.push({ x : 700, y : 181});
+// arr.push({ x : 260, y : 456});
+// arr.push({ x : 260, y : 456});
+// arr.push({ x : 260, y : 456});
+// arr.push({ x : 260, y : 456});
+// arr.push({ x : 260, y : 456});
+// arr.push({ x : 260, y : 456});
 
 // function show_alert() 
 //  {     
@@ -227,7 +165,7 @@ function startMatch() {
     }
     document.getElementById("count-up").innerText = min+':'+zeroPlaceholder+second;
   }
-	isPlaying = true;
+  isPlaying = true;
   keysLeft.innerHTML = 100;
   showSquare();
 }
@@ -355,7 +293,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 7) {
-    if (x == 222) {
+    if (x == 192) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -515,7 +453,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 15) {
-    if (x == 57) {
+    if (x == 9) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -535,7 +473,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 16) {
-    if (x == 54) {
+    if (x == 81) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -555,7 +493,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 17) {
-    if (x == 54) {
+    if (x == 82) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -575,7 +513,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 18) {
-    if (x == 54) {
+    if (x == 85) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -595,7 +533,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 19) {
-    if (x == 54) {
+    if (x == 221) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -615,7 +553,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 20) {
-    if (x == 54) {
+    if (x == 220) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -635,7 +573,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 21) {
-    if (x == 54) {
+    if (x == 20) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -655,7 +593,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 22) {
-    if (x == 54) {
+    if (x == 68) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -675,7 +613,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 23) {
-    if (x == 54) {
+    if (x == 72) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -695,7 +633,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 24) {
-    if (x == 54) {
+    if (x == 78) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -715,7 +653,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 25) {
-    if (x == 54) {
+    if (x == 74) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -735,7 +673,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 26) {
-    if (x == 54) {
+    if (x == 91) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -755,7 +693,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 27) {
-    if (x == 54) {
+    if (x == 87) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -775,7 +713,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 28) {
-    if (x == 54) {
+    if (x == 69) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -795,7 +733,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 29) {
-    if (x == 54) {
+    if (x == 65) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -815,7 +753,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 30) {
-    if (x == 54) {
+    if (x == 83) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -835,7 +773,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 31) {
-    if (x == 54) {
+    if (x == 88) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -855,7 +793,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 32) {
-    if (x == 54) {
+    if (x == 18) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -875,7 +813,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 33) {
-    if (x == 54) {
+    if (x == 93) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -895,7 +833,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 34) {
-    if (x == 54) {
+    if (x == 16) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -915,7 +853,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 35) {
-    if (x == 54) {
+    if (x == 17) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -935,7 +873,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 36) {
-    if (x == 54) {
+    if (x == 93) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -955,7 +893,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 37) {
-    if (x == 54) {
+    if (x == 75) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -975,7 +913,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 38) {
-    if (x == 54) {
+    if (x == 85) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -995,7 +933,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 39) {
-    if (x == 54) {
+    if (x == 89) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1015,7 +953,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 40) {
-    if (x == 54) {
+    if (x == 32) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1035,7 +973,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 41) {
-    if (x == 54) {
+    if (x == 18) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1055,7 +993,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 42) {
-    if (x == 54) {
+    if (x == 17) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1075,7 +1013,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 43) {
-    if (x == 54) {
+    if (x == 90) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1095,7 +1033,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 44) {
-    if (x == 54) {
+    if (x == 16) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1115,7 +1053,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 45) {
-    if (x == 54) {
+    if (x == 66) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1135,7 +1073,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 46) {
-    if (x == 54) {
+    if (x == 77) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1155,7 +1093,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 47) {
-    if (x == 54) {
+    if (x == 188) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1175,7 +1113,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 48) {
-    if (x == 54) {
+    if (x == 190) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1195,7 +1133,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 49) {
-    if (x == 54) {
+    if (x == 186) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1215,7 +1153,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 50) {
-    if (x == 54) {
+    if (x == 222) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1235,7 +1173,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 51) {
-    if (x == 54) {
+    if (x == 219) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1255,7 +1193,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 52) {
-    if (x == 54) {
+    if (x == 80) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1275,7 +1213,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 53) {
-    if (x == 54) {
+    if (x == 71) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1295,7 +1233,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 54) {
-    if (x == 54) {
+    if (x == 70) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1315,7 +1253,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 55) {
-    if (x == 54) {
+    if (x == 67) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1335,7 +1273,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 56) {
-    if (x == 54) {
+    if (x == 76) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1355,14 +1293,14 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 57) {
-    if (x == 54) {
+    if (x == 79) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
       overallPresses = overallPresses + 1;
       acurracy = (correctKeys/overallPresses)*100 + "%";
       acuracy.innerHTML = acurracy;
-      showSquare58()
+      showSquare()
     }
     else {
       keysCounter = keysCounter - 1;
@@ -1371,135 +1309,15 @@ function keyCode1(event) {
       overallPresses = overallPresses + 1;
       acurracy = (correctKeys/overallPresses)*100 + "%";
       acuracy.innerHTML = acurracy;
-      showSquare58()
+      showSquare()
     }
   }
-  else if (keyCounter == 58) {
-    if (x == 54) {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys + 1;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare59()
-    }
-    else {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare59()
-    }
-  }
-  else if (keyCounter == 59) {
-    if (x == 54) {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys + 1;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare60()
-    }
-    else {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare60()
-    }
-  }
-  else if (keyCounter == 60) {
-    if (x == 54) {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys + 1;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare61()
-    }
-    else {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare61()
-    }
-  }
-  else if (keyCounter == 61) {
-    if (x == 54) {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys + 1;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare62()
-    }
-    else {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare62()
-    }
-  }
-  else if (keyCounter == 62) {
-    if (x == 54) {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys + 1;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare63()
-    }
-    else {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare63()
-    }
-  }
-    else if (keyCounter == 63) {
-    if (x == 54) {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys + 1;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare2()
-    }
-    else {
-      keysCounter = keysCounter - 1;
-      keysLeft.innerHTML = keysCounter;
-      correctKeys = correctKeys;
-      overallPresses = overallPresses + 1;
-      acurracy = (correctKeys/overallPresses)*100 + "%";
-      acuracy.innerHTML = acurracy;
-      showSquare2()
-    }
-  }
-  
 }
 
 function showSquare() {
   document.getElementById('square').style.left = arr[0].x + "px";
   document.getElementById('square').style.top = arr[0].y + "px";
+  document.getElementById("square").style.visibility = "visible";
   keyCounter = 0 + 1
   keyCode1();
 }
@@ -1955,76 +1773,3 @@ function showSquare57() {
   keyCounter = 57
   keyCode1()
 }
-
-function showSquare58() {
-  document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[57].x + "px"
-  document.getElementById('square').style.top = arr[57].y + "px"
-  keyCounter = 58
-  keyCode1()
-}
-
-function showSquare59() {
-  document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[58].x + "px"
-  document.getElementById('square').style.top = arr[58].y + "px"
-  keyCounter = 59
-  keyCode1()
-}
-
-function showSquare60() {
-  document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[59].x + "px"
-  document.getElementById('square').style.top = arr[59].y + "px"
-  keyCounter = 60
-  keyCode1()
-}
-
-function showSquare61() {
-  document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[60].x + "px"
-  document.getElementById('square').style.top = arr[60].y + "px"
-  keyCounter = 61
-  keyCode1()
-}
-
-function showSquare62() {
-  document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[61].x + "px"
-  document.getElementById('square').style.top = arr[61].y + "px"
-  keyCounter = 62
-  keyCode1()
-}
-
-function showSquare63() {
-  document.getElementById('square').style.visibility='visible';
-  document.getElementById('square').style.left = arr[62].x + "px"
-  document.getElementById('square').style.top = arr[62].y + "px"
-  keyCounter = 63
-  keyCode1()
-}
-
-// function showSquare19() {
-//   document.getElementById('square').style.visibility='visible';
-//   document.getElementById('square').style.left = arr[18].x + "px"
-//   document.getElementById('square').style.top = arr[18].y + "px"
-//   keyCounter = 19
-//   keyCode1()
-// }
-
-// function showSquare19() {
-//   document.getElementById('square').style.visibility='visible';
-//   document.getElementById('square').style.left = arr[18].x + "px"
-//   document.getElementById('square').style.top = arr[18].y + "px"
-//   keyCounter = 19
-//   keyCode1()
-// }
-
-// function showSquare19() {
-//   document.getElementById('square').style.visibility='visible';
-//   document.getElementById('square').style.left = arr[18].x + "px"
-//   document.getElementById('square').style.top = arr[18].y + "px"
-//   keyCounter = 19
-//   keyCode1()
-// }
-
