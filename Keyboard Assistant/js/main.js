@@ -1,7 +1,6 @@
 window.addEventListener('load', init);
 
 let isPlaying;
-var keysCounter = 100;
 var correctKeys = 0;
 var overallPresses = 0;
 var acurracy = (correctKeys/overallPresses)*100 + "%";
@@ -18,6 +17,7 @@ const square = document.querySelector('#square');
 const startButton = document.querySelector('#startButton');
 const numberOfKeys = document.querySelector('#numberOfKeys');
 
+var keysCounter = numberOfKeys.value;
 // document.getElementById('count-up').innerText = 'Hi'
 
 var arr = new Array();
@@ -127,7 +127,7 @@ arr.push({ x : 660, y : 181});
 // Initialize Game
 function init() {
   // Sets the keys left to 100
-  keysLeft.innerHTML = 100;
+  keysLeft.innerHTML = numberOfKeys.value;
   // Set the keys left to 0%
   // acuracy.innerHTML = '0%';
   document.getElementById("startButton").addEventListener("click", startMatch);
@@ -166,15 +166,21 @@ function startMatch() {
     document.getElementById("count-up").innerText = min+':'+zeroPlaceholder+second;
   }
   isPlaying = true;
-  keysLeft.innerHTML = 100;
+  keysLeft.innerHTML = numberOfKeys.value;
   showSquare();
 }
 
 function keyCode1(event) {
   var x = event.keyCode;
+  if (overallPresses == numberOfKeys.value) {
+    isPlaying = false
+  }
+  if (isPlaying == false) {
+    message.innerHTML = "Your accuracy is " + acurracy;
+  }
   if (keyCounter == 1) {
     if (x == 49) {
-      keysCounter = keysCounter - 1;
+      keysCounter = numberOfKeys.value - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
       overallPresses = overallPresses + 1;

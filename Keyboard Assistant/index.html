@@ -17,16 +17,15 @@ Name : <input type="text" name="myname" id="name" placeholder="Enter name..."><b
 
 <!-- <form method="post" action="game.html"> -->
 Name: <input type="text" name="myname" id="myname" value="" placeholder="Enter name..."/>
-# of keys to type: <input type="text" name="numberOfKeys" id="numberOfKeys" value="" placeholder="Enter number of keys..."/>
 <input type="button" onclick="show_alert()" value="Enter" />
+<h4 class="mt-3" id="message"></h4>
 
 <script>
 function show_alert() 
  {     
-   var name = document.getElementById('myname').value;
-   var numberOfKeys = document.getElementById('numberOfKeys').value;
-   alert("Hello,\xa0"+ name + ", you are typing " + numberOfKeys + " keys");
-   window.location.href="game.html";
+  var name = document.getElementById('myname').value;
+  alert("Hello,\xa0"+ name + ", you are typing " + numberOfKeys + " keys");
+  window.location.href="game.html";
  } 
 </script>
 
@@ -39,6 +38,3 @@ function show_alert()
     </div>
   </div>
 </div>
-
-
-<script src="js/main.js"></script>
