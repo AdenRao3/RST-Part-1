@@ -1,3 +1,7 @@
+// Created by: Aden Rao
+// Created on: June 1, 2019
+// This file is connect to game.html and it makes the squares appear and all the other functions like starting the game, ending it and saving scores.
+
 // Goes to intialize game function when the window loads
 window.addEventListener('load', init);
 
