@@ -21,20 +21,23 @@ const seconds = document.querySelector('#seconds');
 const square = document.querySelector('#square');
 const startButton = document.querySelector('#startButton');
 const numberOfKeys = document.querySelector('#numberOfKeys');
+const time = document.querySelector('#count-up');
+const table = document.querySelector('#table');
+// const isStorage = 'undefined' !== typeof localStorage;
 
 // Sets the keys counter to what the user entered in the text field
 var keysCounter = numberOfKeys.value;
 
-// Array for everysingle position of the squares 
+// Array for every single position of the square 
 var arr = new Array();
 arr.push({ x : 275, y : 135});
 arr.push({ x : 457, y : 135});
 arr.push({ x : 503, y : 135});
-arr.push({ x : 593, y : 135});
+arr.push({ x : 240, y : 227});
 arr.push({ x : 548, y : 135});
 arr.push({ x : 765, y : 130});
 arr.push({ x : 223, y : 135});
-arr.push({ x : 320, y : 135});
+arr.push({ x : 297, y : 181});
 arr.push({ x : 410, y : 135});
 arr.push({ x : 683, y : 135});
 arr.push({ x : 728, y : 135});
@@ -42,12 +45,12 @@ arr.push({ x : 774, y : 135});
 arr.push({ x : 365, y : 135});
 arr.push({ x : 637, y : 135});
 arr.push({ x : 235, y : 181});
-arr.push({ x : 297, y : 181});
+arr.push({ x : 320, y : 135});
 arr.push({ x : 434, y : 181});
 arr.push({ x : 570, y : 181});
 arr.push({ x : 797, y : 181});
 arr.push({ x : 808, y : 227});
-arr.push({ x : 240, y : 227});
+arr.push({ x : 593, y : 135});
 arr.push({ x : 399, y : 227});
 arr.push({ x : 536, y : 227});
 arr.push({ x : 558, y : 273});
@@ -93,10 +96,9 @@ function init() {
   document.getElementById("startButton").addEventListener("click", startMatch);
 }
 
-
-
 // Start match
 function startMatch() {
+  // Timer
   var min = 0;
   var second = 00;
   var zeroPlaceholder = 0;
@@ -115,33 +117,41 @@ function startMatch() {
     if(second == 00){
         zeroPlaceholder = 0;
     }
+    // Gets the count up text from the html file
     document.getElementById("count-up").innerText = min+':'+zeroPlaceholder+second;
   }
   isPlaying = true;
   keysLeft.innerHTML = numberOfKeys.value;
+  // Goes to square 1 function
   showSquare();
 }
 
 function keyCode1(event) {
+  // Sets a variable to keycodes
   var x = event.keyCode;
-  if (overallPresses == numberOfKeys.value) {
-    isPlaying = false
+  // Checks if keys left is equal to 0
+  if (keysLeft.innerHTML == '0') {
+    //If so goes to game over function
+    gameOver()
   }
-  if (isPlaying == false) {
-    message.innerHTML = "Your accuracy is " + acurracy;
-  }
+  // Checks if key counter is equal to 1 if not moves to the next 1
   if (keyCounter == 1) {
+    // Checks if keycode is equal to 49 if yes then adds to correct keys if no correct keys stay the same
     if (x == 49) {
+      // Sets the keysleft to one lower
       keysCounter = numberOfKeys.value - 1;
       keysLeft.innerHTML = keysCounter;
+      // Adds one to correct keys
       correctKeys = correctKeys + 1;
       overallPresses = overallPresses + 1;
+      // Sets the accuraccy
       acurracy = (correctKeys/overallPresses)*100 + "%";
       acuracy.innerHTML = acurracy;
+      // Goes to show square 2 function
       showSquare2()
     }
     else {
-      keysCounter = keysCounter - 1;
+      keysCounter = numberOfKeys.value - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys;
       overallPresses = overallPresses + 1;
@@ -191,7 +201,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 4) {
-    if (x == 56) {
+    if (x == 20) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -271,7 +281,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 8) {
-    if (x == 50) {
+    if (x == 81) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -431,7 +441,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 16) {
-    if (x == 81) {
+    if (x == 50) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -531,7 +541,7 @@ function keyCode1(event) {
     }
   }
   else if (keyCounter == 21) {
-    if (x == 20) {
+    if (x == 53) {
       keysCounter = keysCounter - 1;
       keysLeft.innerHTML = keysCounter;
       correctKeys = correctKeys + 1;
@@ -1273,10 +1283,14 @@ function keyCode1(event) {
 }
 
 function showSquare() {
+  // Sets the square to array number 1 position
   document.getElementById('square').style.left = arr[0].x + "px";
   document.getElementById('square').style.top = arr[0].y + "px";
+  // Makes the square visibles
   document.getElementById("square").style.visibility = "visible";
+  // Adds one to the keycounter
   keyCounter = 0 + 1
+  // Goes to keycode 1 function
   keyCode1();
 }
 
@@ -1730,4 +1744,24 @@ function showSquare57() {
   document.getElementById('square').style.top = arr[56].y + "px"
   keyCounter = 57
   keyCode1()
+}
+
+// Game over function
+function gameOver() {
+  // Makes the square hidden
+  document.getElementById('square').style.visibility='hidden';
+  // Tells the person their time and accuracy
+  message.innerHTML = "Your Done! Your accuracy was " + acurracy + " Your time was " + document.getElementById('count-up').innerHTML
+  // window.location.href="score.html";
+  // Sets a time and accuracy variable
+  var times = time.innerHTML;
+  var acurrracy = acuracy.innerHTML;
+  // Puts the persons score in the local storage
+  localStorage.setItem('Time and Acuracy', times + ", " + acurrracy);
+}
+
+// When the person clicks score to beat it will show them the score they have to beat 
+function highScore() {
+  // Gets data
+  message.innerHTML = "Score to beat, " + localStorage.getItem('Time and Acuracy')
 }
